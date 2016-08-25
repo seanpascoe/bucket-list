@@ -1,8 +1,9 @@
 import React from 'react';
+import BucketPage from '../components/buckets/BucketPage';
 
 const App = () => (
   <div>
-    <Home />
+    <BucketPage />
   </div>
 );
 
