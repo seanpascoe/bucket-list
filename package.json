@@ -22,7 +22,8 @@
     "react-dom": "^0.14.7",
     "serve-favicon": "~2.3.0",
     "style-loader": "^0.13.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.12.2",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.7.4",
