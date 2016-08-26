@@ -12,6 +12,7 @@ class BucketForm extends React.Component {
         <form className="col s12">
           <div className="input-field">
             <input type="text" placeholder="Bucket Name..."/>
+            <input type="text" placeholder="Icon name..."/>
           </div>
         </form>
       </div>

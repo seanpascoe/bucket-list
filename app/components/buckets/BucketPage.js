@@ -5,7 +5,9 @@ import Bucket from './Bucket';
 class BucketPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { }
+    this.state = {
+      buckets: [],
+    }
   }
 
   render() {
