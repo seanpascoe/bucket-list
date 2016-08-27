@@ -1,15 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var Card = require('../models/card.js');
+var List = require('../models/list.js');
 
 router.get('/', function(req, res) {
   var query = List.find({});
-  query.where('boardId', req.query.bucketId);
+  query.where('bucketId', req.query.bucketId);
   query.exec( function(err, lists) {
     res.json(lists);
   });
 });
 
-router.post('/', function())
+router.post('/', function(req, res) {
+  new List({
+    title: req.body.title,
+    bucketId: req.body.bucketId
+  }).save(function(err, list) {
+    res.json(list);
+  });
+});
 
 module.exports = router;

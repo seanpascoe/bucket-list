@@ -2,6 +2,7 @@ import React from 'react';
 import List from './List';
 import $ from 'jquery';
 import 'whatwg-fetch';
+import ReactDOM from 'react-dom';
 
 class ListsPage extends React.Component {
   constructor(props) {
@@ -33,6 +34,11 @@ class ListsPage extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+    if(this.state.addListForm === true)
+      ReactDOM.findDOMNode(this.refs.titleInput).focus()
+  }
+
   addNewListToDB() {
     let title = this.state.newListTitle;
     let bucketId = this.props.bucketId;
@@ -47,7 +53,7 @@ class ListsPage extends React.Component {
       return res.json();
     }).then(function(list) {
       this.addNewListToDOM(list);
-      this.setState(newListTitle: "");
+      this.setState({newListTitle: "", addListForm: false});
     }.bind(this))
   }
 
@@ -56,7 +62,7 @@ class ListsPage extends React.Component {
   }
 
   toggleEditAddList() {
-    this.setState({addListForm: !this.state.addListForm})
+    this.setState({addListForm: !this.state.addListForm});
   }
 
   titleChange(e) {
@@ -67,13 +73,14 @@ class ListsPage extends React.Component {
     return (
       <div className="col s12 m4 l3">
         <div style={style.card} id="addList" className="card grey lighten-4">
-          <div style={style.cardcontent} className="card-content">
+          <div style={style.titleInput} className="card-content">
             <input
               style={style.cardTitle}
               className="card-title grey-text text-darken-3"
               placeholder="List name..."
               onChange={this.titleChange}
               value={this.state.newListTitle}
+              ref="titleInput"
             />
           </div>
           <div>
@@ -102,6 +109,7 @@ class ListsPage extends React.Component {
     let style = {
       card: {borderRadius: "5px", boxShadow: "none"},
       cardcontent: {padding: "10px 10px 0 10px"},
+      titleInput: {padding: "5px 10px 0 10px"},
       cardTitle: {lineHeight: "1", fontSize: "18px", fontWeight: "400", height: "2rem"},
       bucketTitle: {margin: "10px 10px 0", fontSize: "24px"},
       editButtons: {padding: "0 .5rem"}

@@ -3,7 +3,7 @@ import React from 'react';
 const List = (props) => {
   let style = {
     card: {borderRadius: "5px"},
-    cardcontent: {padding: "5px 5px 0 5px"},
+    cardcontent: {padding: "5px 10px 0 10px"},
     cardTitle: {
       lineHeight: "1.5",
       fontSize: "18px",

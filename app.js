@@ -9,6 +9,7 @@ mongoose.connect( 'mongodb://localhost/bucket-list' );
 
 var routes = require('./routes/index');
 var buckets = require('./routes/buckets');
+var lists = require('./routes/lists');
 
 
 var app = express();
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/buckets', buckets);
+app.use('/lists', lists);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
