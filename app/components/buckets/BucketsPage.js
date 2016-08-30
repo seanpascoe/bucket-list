@@ -7,6 +7,7 @@ class BucketsPage extends React.Component {
   constructor(props) {
     super(props)
     this.addBucket = this.addBucket.bind(this);
+    this.deleteBucket =this.deleteBucket.bind(this);
     this.state = {
       buckets: []
     }
@@ -35,6 +36,10 @@ class BucketsPage extends React.Component {
     })
   }
 
+  deleteBucket(id) {
+    console.log(id);
+  }
+
   render() {
     let style = {
       h2 : {
@@ -45,7 +50,7 @@ class BucketsPage extends React.Component {
     }
 
     let buckets = this.state.buckets.map((bucket) => {
-      return (<Bucket key={bucket._id} {...bucket} />)
+      return (<Bucket key={bucket._id} deleteBucket={this.deleteBucket} {...bucket} />)
     })
 
     return (

@@ -2,9 +2,19 @@ var express = require('express');
 var router = express.Router();
 var List = require('../models/list.js');
 
-router.get('/', function(req, res) {
+// using url query instead of url params
+
+// router.get('/', function(req, res) {
+//   var query = List.find({});
+//   query.where('bucketId', req.query.bucketId);
+//   query.exec( function(err, lists) {
+//     res.json(lists);
+//   });
+// });
+
+router.get('/:id', function(req, res) {
   var query = List.find({});
-  query.where('bucketId', req.query.bucketId);
+  query.where('bucketId', req.params.id);
   query.exec( function(err, lists) {
     res.json(lists);
   });

@@ -6,3 +6,24 @@
 #addList:hover {
   background-color: #D67800;
 }
+
+.bucket {
+  border: 1px solid #ff8f00;
+}
+
+.bucket:hover {
+  border: 1px solid #616161;
+}
+
+.delete-bucket:hover {
+  color: white;
+}
+
+.delete-bucket {
+  color: #ffe0b2;
+}
+
+.delete-icon:hover {
+  cursor: pointer;
+  font-weight: 600;
+}

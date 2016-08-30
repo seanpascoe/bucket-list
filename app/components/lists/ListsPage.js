@@ -1,6 +1,5 @@
 import React from 'react';
 import List from './List';
-import $ from 'jquery';
 import 'whatwg-fetch';
 import ReactDOM from 'react-dom';
 
@@ -17,21 +16,16 @@ class ListsPage extends React.Component {
   }
 
   componentWillMount() {
-    // fetch('/lists')
-    //   .then(function(res) {
-    //     return res.JSON()
-    //   }).then(function(lists) {
-    //     this.setState({ lists })
-    //   }.bind(this))
+    let bucketId = this.props.bucketId
+    //using query instead of url params (see routes/lists for corresponding router)
+    // fetch(`/lists?bucketId=${bucketId}`)
+    fetch(`/lists/${bucketId}`)
+    .then(function(res) {
+      return res.json()
+    }).then(function(lists) {
+      this.setState({ lists })
+    }.bind(this))
 
-    $.ajax({
-      url: '/lists',
-      type: 'GET',
-      dataType: 'JSON',
-      data: { bucketId: this.props.bucketId }
-    }).done( lists => {
-      this.setState({ lists });
-    });
   }
 
   componentDidUpdate() {
