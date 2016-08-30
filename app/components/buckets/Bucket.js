@@ -12,7 +12,7 @@ const Bucket = (props) => {
   };
 
   function deleteBucketFromDB(e) {
-    e.stopPropagation()
+    e.stopPropagation();
     fetch(`/buckets/${props._id}`, {
       method: 'DELETE'
     }).then(function() {
