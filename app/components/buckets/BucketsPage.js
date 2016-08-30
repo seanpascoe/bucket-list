@@ -1,6 +1,7 @@
 import React from 'react';
 import BucketForm from './BucketForm';
 import Bucket from './Bucket';
+import AddBucketCard from './AddBucketCard';
 import 'whatwg-fetch';
 
 class BucketsPage extends React.Component {
@@ -8,7 +9,8 @@ class BucketsPage extends React.Component {
     super(props)
     this.addBucket = this.addBucket.bind(this);
     this.deleteBucketFromDOM =this.deleteBucketFromDOM.bind(this);
-    this.state = {buckets: []};
+    this.toggleAddBucket = this.toggleAddBucket.bind(this);
+    this.state = {buckets: [], showBucketForm: false};
   }
 
   componentWillMount() {
@@ -21,20 +23,23 @@ class BucketsPage extends React.Component {
   }
 
   addBucket(bucket) {
-    this.setState({
-      buckets: [...this.state.buckets, bucket]
-    })
+    this.setState({buckets: [...this.state.buckets, bucket], showBucketForm: false});
   }
 
   deleteBucketFromDOM(id) {
     this.setState({buckets: this.state.buckets.filter(bucket => bucket._id !== id)});
   }
 
+  toggleAddBucket() {
+    this.setState({showBucketForm: !this.state.showBucketForm})
+  }
+
   render() {
     let style = {
       h2 : {
         fontSize: "1.5em",
-        marginTop: 0,
+        marginTop: "10px",
+        marginBottom: "5px",
         marginLeft: "15px"
       }
     }
@@ -45,10 +50,10 @@ class BucketsPage extends React.Component {
 
     return (
       <div>
-        <BucketForm addBucket={this.addBucket}/>
         <h2 style={style.h2}>My Buckets:</h2>
         <div className="row">
           {buckets}
+          {this.state.showBucketForm ? <BucketForm addBucket={this.addBucket} toggleAddBucket={this.toggleAddBucket} /> : <AddBucketCard toggleAddBucket={this.toggleAddBucket} />}
         </div>
       </div>
     )

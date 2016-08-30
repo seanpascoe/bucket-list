@@ -49,28 +49,52 @@ class BucketForm extends React.Component {
   }
 
   render() {
+    let style = {
+      card: {borderRadius: "10px"},
+      cardcontent: {padding: "20px 20px 20px 20px"},
+      anchors: {marginLeft: "10px", marginRight: "10px"},
+      deleteBucket: {zIndex: 100, position: "absolute", right:"7px", top:"7px"},
+      bucketLink: {cursor: "pointer"},
+      bucketIcon: {fontSize: "7rem"},
+      formContent: {padding: "10px"},
+      inputs: {marginTop: 0},
+      addButton: {margin: "0 auto"}
+    };
+
     return (
-      <div className="row">
-        <form onSubmit={this.addBucket} className="col s12">
-          <div className="input-field">
-            <input
-              type="text"
-              placeholder="Bucket Name..."
-              value={this.state.title}
-              onChange={this.handleTitle} />
+      <div className="col s12 m4 l3">
+        <div style={style.bucketLink}>
+          <div style={style.card} className="card grey lighten-4">
+            <div style={style.formContent}>
+              <div style={style.inputs} className="input-field">
+                <input
+                  type="text"
+                  placeholder="Bucket Name..."
+                  value={this.state.title}
+                  onChange={this.handleTitle} />
+              </div>
+              <div style={style.inputs} className="input-field">
+                <input
+                  type="text"
+                  placeholder="Icon key..."
+                  value={this.state.icon_name}
+                  onChange={this.handleIconName} />
+              </div>
+              <button style={style.addButton} className="btn-flat center-align" onClick={this.props.toggleAddBucket}>Cancel</button>
+              <button style={style.addButton} className="btn-flat center-align" onClick={this.addBucket}>Add</button>
+            </div>
           </div>
-          <div className="input-field">
-            <input
-              type="text"
-              placeholder="Icon key..."
-              value={this.state.icon_name}
-              onChange={this.handleIconName} />
-          </div>
-          <button className="btn" type="submit">Add</button>
-        </form>
+        </div>
       </div>
     )
   }
 }
 
 export default BucketForm;
+
+
+{/* <i style={style.deleteBucket} className="material-icons delete-bucket" onClick={deleteBucketFromDB}>delete_forever</i>
+<div style={style.cardcontent} className="card-content white-text center">
+  <p className="card-title">{props.title}</p>
+  <i style={style.bucketIcon} className="material-icons orange-text text-lighten-4">{props.icon_name}</i>
+</div> */}

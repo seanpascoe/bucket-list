@@ -23,7 +23,7 @@ const Bucket = (props) => {
   return (
     <div className="col s12 m4 l3">
       <div style={style.bucketLink} onClick={() => window.location = `/buckets/${props._id}`}>
-        <div style={style.card} className="card orange bucket">
+        <div style={style.card} className="card bucket">
           <i style={style.deleteBucket} className="material-icons delete-bucket" onClick={deleteBucketFromDB}>delete_forever</i>
           <div style={style.cardcontent} className="card-content white-text center">
             <p className="card-title">{props.title}</p>
