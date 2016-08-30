@@ -1,4 +1,5 @@
 import React from 'react';
+import 'whatwg-fetch';
 
 const Bucket = (props) => {
   let style = {
@@ -10,20 +11,20 @@ const Bucket = (props) => {
     bucketIcon: {fontSize: "7rem"}
   };
 
-  function deleteBucket(e) {
+  function deleteBucketFromDB(e) {
     e.stopPropagation()
-    props.deleteBucket(props._id)
-  }
-
-  function navToBucket() {
-    window.location = `/buckets/${props._id}`;
+    fetch(`/buckets/${props._id}`, {
+      method: 'DELETE'
+    }).then(function() {
+      props.deleteBucketFromDOM(props._id)
+    })
   }
 
   return (
     <div className="col s12 m4 l3">
-      <div style={style.bucketLink} onClick={navToBucket}>
+      <div style={style.bucketLink} onClick={() => window.location = `/buckets/${props._id}`}>
         <div style={style.card} className="card orange bucket">
-          <i style={style.deleteBucket} className="material-icons delete-bucket" onClick={deleteBucket}>delete_forever</i>
+          <i style={style.deleteBucket} className="material-icons delete-bucket" onClick={deleteBucketFromDB}>delete_forever</i>
           <div style={style.cardcontent} className="card-content white-text center">
             <p className="card-title">{props.title}</p>
             <i style={style.bucketIcon} className="material-icons orange-text text-lighten-4">{props.icon_name}</i>

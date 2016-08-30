@@ -13,6 +13,7 @@ class ListsPage extends React.Component {
     this.titleChange = this.titleChange.bind(this);
     this.addNewListToDB = this.addNewListToDB.bind(this);
     this.addNewListToDOM = this.addNewListToDOM.bind(this);
+    this.deleteListFromDOM = this.deleteListFromDOM.bind(this);
   }
 
   componentWillMount() {
@@ -49,6 +50,10 @@ class ListsPage extends React.Component {
       this.addNewListToDOM(list);
       this.setState({newListTitle: "", addListForm: false});
     }.bind(this))
+  }
+
+  deleteListFromDOM(listId) {
+    this.setState({lists: this.state.lists.filter(list => list._id !== listId)});
   }
 
   addNewListToDOM(list) {
@@ -110,7 +115,7 @@ class ListsPage extends React.Component {
     };
 
     let lists = this.state.lists.map(list => (
-      <List key={list._id} {...list} />
+      <List key={list._id} deleteListFromDOM={this.deleteListFromDOM} {...list} />
     ))
 
     return (

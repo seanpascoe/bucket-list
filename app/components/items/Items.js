@@ -7,6 +7,7 @@ class Items extends React.Component {
   constructor(props) {
     super(props)
     this.addNewItemToDOM = this.addNewItemToDOM.bind(this);
+    this.deleteItemFromDOM = this.deleteItemFromDOM.bind(this);
     this.state = {items: []}
   }
 
@@ -20,13 +21,17 @@ class Items extends React.Component {
     }.bind(this))
   }
 
+  deleteItemFromDOM(itemId) {
+    this.setState({ items: this.state.items.filter(item => item._id !== itemId)});
+  }
+
   addNewItemToDOM(item) {
     this.setState({items: [...this.state.items, item]})
   }
 
   render() {
     let items = this.state.items.map(item => (
-      <Item key={item._id} {...item} />
+      <Item key={item._id} deleteItemFromDOM={this.deleteItemFromDOM} {...item} />
     ))
     return (
       <div>

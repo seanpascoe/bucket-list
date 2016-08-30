@@ -7,10 +7,8 @@ class BucketsPage extends React.Component {
   constructor(props) {
     super(props)
     this.addBucket = this.addBucket.bind(this);
-    this.deleteBucket =this.deleteBucket.bind(this);
-    this.state = {
-      buckets: []
-    }
+    this.deleteBucketFromDOM =this.deleteBucketFromDOM.bind(this);
+    this.state = {buckets: []};
   }
 
   componentWillMount() {
@@ -20,14 +18,6 @@ class BucketsPage extends React.Component {
       }).then(function(buckets) {
         this.setState({ buckets });
       }.bind(this))
-
-    // $.ajax({
-    //   url: '/buckets',
-    //   type: 'GET',
-    //   dataType: 'JSON',
-    // }).done(buckets => {
-    //   this.setState({ buckets });
-    // })
   }
 
   addBucket(bucket) {
@@ -36,8 +26,8 @@ class BucketsPage extends React.Component {
     })
   }
 
-  deleteBucket(id) {
-    console.log(id);
+  deleteBucketFromDOM(id) {
+    this.setState({buckets: this.state.buckets.filter(bucket => bucket._id !== id)});
   }
 
   render() {
@@ -50,7 +40,7 @@ class BucketsPage extends React.Component {
     }
 
     let buckets = this.state.buckets.map((bucket) => {
-      return (<Bucket key={bucket._id} deleteBucket={this.deleteBucket} {...bucket} />)
+      return (<Bucket key={bucket._id} deleteBucketFromDOM={this.deleteBucketFromDOM} {...bucket} />)
     })
 
     return (

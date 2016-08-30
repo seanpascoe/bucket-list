@@ -11,17 +11,9 @@ class Item extends React.Component{
   deleteItemInDB() {
     let itemId = this.props._id;
     fetch(`/items/${itemId}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(function(res) {
-      return res.json();
-    }).then(function(item) {
-      console.log('item deleted!');
-      // this.props.deleteItemInDOM(item);
-      // this.toggleAddItem();
+      method: 'DELETE'
+    }).then(function() {
+      this.props.deleteItemFromDOM(itemId);
     }.bind(this))
   }
 

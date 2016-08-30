@@ -12,7 +12,7 @@
 }
 
 .bucket:hover {
-  border: 1px solid #616161;
+  border: 1px solid #757575;
 }
 
 .delete-bucket:hover {
@@ -23,7 +23,8 @@
   color: #ffe0b2;
 }
 
-.delete-icon:hover {
+.delete-icon:hover,
+.deleteList:hover {
   cursor: pointer;
   font-weight: 600;
 }

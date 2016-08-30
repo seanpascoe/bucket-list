@@ -21,7 +21,8 @@ router.post('/', function(req, res) {
 
 router.delete('/:id', function(req, res) {
   Item.findById(req.params.id, function(err, item) {
-    list.remove();
+    item.remove();
+    res.json({success: true});
   });
 });
 
